@@ -1,0 +1,97 @@
+@import "tailwindcss";
+
+:root {
+  --background: #0b0f1a;
+  --foreground: #eef2ff;
+  --muted: #9aa4bf;
+  --panel: rgba(17, 24, 39, 0.72);
+  --panel-strong: rgba(15, 23, 42, 0.92);
+  --border: rgba(148, 163, 184, 0.22);
+  --accent: #7c8cff;
+  --accent-2: #f59e0b;
+  --success: #22c55e;
+  --warning: #f59e0b;
+  --danger: #fb7185;
+  --ring: rgba(124, 140, 255, 0.5);
+  --glow-1: rgba(124, 140, 255, 0.25);
+  --glow-2: rgba(245, 158, 11, 0.18);
+  --glow-3: rgba(94, 234, 212, 0.15);
+  --gradient-base: rgba(5, 10, 20, 0.85);
+  --gradient-base-2: rgba(5, 10, 20, 0.4);
+}
+
+[data-theme="light"] {
+  --background: #f8fafc;
+  --foreground: #0f172a;
+  --muted: #475569;
+  --panel: rgba(255, 255, 255, 0.7);
+  --panel-strong: rgba(255, 255, 255, 0.94);
+  --border: rgba(15, 23, 42, 0.12);
+  --accent: #4f46e5;
+  --accent-2: #f97316;
+  --success: #16a34a;
+  --warning: #ea580c;
+  --danger: #e11d48;
+  --ring: rgba(79, 70, 229, 0.35);
+  --glow-1: rgba(79, 70, 229, 0.18);
+  --glow-2: rgba(249, 115, 22, 0.16);
+  --glow-3: rgba(14, 116, 144, 0.12);
+  --gradient-base: rgba(248, 250, 252, 0.9);
+  --gradient-base-2: rgba(248, 250, 252, 0.6);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-muted: var(--muted);
+  --color-panel: var(--panel);
+  --color-panel-strong: var(--panel-strong);
+  --color-border: var(--border);
+  --color-accent: var(--accent);
+  --color-accent-2: var(--accent-2);
+  --color-success: var(--success);
+  --color-warning: var(--warning);
+  --color-danger: var(--danger);
+  --color-ring: var(--ring);
+  --radius-xl: 18px;
+  --radius-2xl: 24px;
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-family: var(--font-sans);
+    min-height: 100vh;
+    background-image:
+      radial-gradient(circle at top left, var(--glow-1), transparent 45%),
+      radial-gradient(circle at 20% 20%, var(--glow-2), transparent 40%),
+      radial-gradient(circle at 80% 20%, var(--glow-3), transparent 35%),
+      linear-gradient(180deg, var(--gradient-base), var(--gradient-base-2));
+  }
+
+  ::selection {
+    background: rgba(124, 140, 255, 0.35);
+  }
+}
+
+@layer utilities {
+  .glass-panel {
+    @apply bg-panel/80 backdrop-blur-2xl border border-border shadow-[0_8px_40px_rgba(15,23,42,0.4)];
+  }
+
+  .glass-strong {
+    @apply bg-panel-strong/90 backdrop-blur-2xl border border-border shadow-[0_12px_50px_rgba(15,23,42,0.45)];
+  }
+
+  .text-muted {
+    color: var(--muted);
+  }
+
+  .ring-glow {
+    box-shadow: 0 0 0 1px rgba(124, 140, 255, 0.2), 0 0 20px rgba(124, 140, 255, 0.25);
+  }
+}
